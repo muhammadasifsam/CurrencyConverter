@@ -16,6 +16,25 @@ export class AppComponent {
     { id: 4, name: 'Brazil' },
     { id: 5, name: 'England' },
   ];
+  currency_symbols = {
+    USD: '$', // US Dollar
+    EUR: '€', // Euro
+    CRC: '₡', // Costa Rican Colón
+    GBP: '£', // British Pound Sterling
+    ILS: '₪', // Israeli New Sheqel
+    INR: '₹', // Indian Rupee
+    JPY: '¥', // Japanese Yen
+    KRW: '₩', // South Korean Won
+    NGN: '₦', // Nigerian Naira
+    PHP: '₱', // Philippine Peso
+    PLN: 'zł', // Polish Zloty
+    PYG: '₲', // Paraguayan Guarani
+    THB: '฿', // Thai Baht
+    UAH: '₴', // Ukrainian Hryvnia
+    VND: '₫', // Vietnamese Dong
+  };
+
+  selectedCurrency: any;
   contactForm: FormGroup;
 
   constructor(
@@ -49,5 +68,8 @@ export class AppComponent {
     let fromRate = currency.rates[form.currencyFrom];
     let toRate = currency.rates[form.currencyTo];
     this.amount = ((toRate / fromRate) * form.amount).toFixed(2);
+    this.selectedCurrency = this.currency_symbols[form.currencyTo]
+      ? this.currency_symbols[form.currencyTo]
+      : '$';
   }
 }
